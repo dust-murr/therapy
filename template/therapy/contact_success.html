@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dustin Murry's TMS</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <style>
+        .success {
+          margin-left: 20%;
+          padding: 5px;
+        }
+
+        .upper,
+        .lower {
+          display: flex;
+          flex-direction: row;
+          justify-content: space-evenly;
+          margin-bottom: 1rem;
+        }
+
+        img {
+          background-size: cover;
+          width: 32rem;
+          height: 24rem;
+          display: flex;
+          align-items: center;
+          border-radius: 25%;
+        }
+
+      </style>
+</head>
+{% include "therapy/navbar.html" %}
+<body>
+  <div class="success">
+      <h1 style="color: green; margin-left: 37%"><u>Message Sent!</u></h1><br>
+      <div class="upper">
+          <div>
+              <img src="https://media.giphy.com/media/3orieY60l6tDS8jptK/giphy.gif"/>
+          </div>
+          <div>
+              <img src="https://media.giphy.com/media/xT5LMtqNw2PS9UQU1y/giphy.gif"/>
+          </div>
+      </div>
+
+      <div class="lower">
+          <div>
+              <img src="https://media.giphy.com/media/l2JejmC4Ws8WmDe7K/giphy.gif"/>
+          </div>
+          <div>
+              <img src="https://media.giphy.com/media/26tk1oB1qqJd3btJK/giphy.gif"/>
+          </div>
+      </div>
+  </div>
+</body>

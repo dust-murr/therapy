@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dustin Murry's TMS</title>
+    <link rel="stylesheet" href="{% static '/style.css' %}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <style>
+        .row {
+            margin-top: 40px;
+            padding: 0 10px;
+        }
+
+        .clickable {
+            cursor: pointer;
+        }
+
+        .panel-heading div {
+            margin-top: -18px;
+            font-size: 15px;
+        }
+
+        .panel-heading div span {
+            margin-left: 5px;
+        }
+
+        .panel-body {
+            display: none;
+        }
+
+        .card {
+            margin-bottom: 45px;
+            text-align: center;
+        }
+
+        .card div {
+            display: inline-block;
+        }
+
+        .card > div {
+            margin: 10px 5px;
+            text-align: left;
+        }
+
+       .cool-card {
+            width: 300px;
+            position: relative;
+            -webkit-box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.3);
+            -moz-box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.3);
+            -o-box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.3);
+            box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.3);
+        }
+
+        .cool-card .card-content {
+            padding: 30px;
+        }
+
+        .cool-card .card-num {
+            font-size: 25px;
+        }
+
+        .cool-card .card-text {
+            line-height: 1.6;
+        }
+
+        .cool-card {
+            text-decoration: none;
+            position: relative;
+            padding: 10px 0px;
+        }
+        .cool-card .card-link {
+            padding: 25px;
+            width: -webkit-fill-available;
+        }
+
+        .cool-card .card-link a {
+            text-decoration: none;
+            position: relative;
+            padding: 10px 0px;
+        }
+
+        .cool-card .card-link a:after {
+            top: 30px;
+            content: "";
+            display: block;
+            height: 2px;
+            left: 50%;
+            position: absolute;
+            width: 0;
+            -webkit-transition: width 0.3s ease 0s, left 0.3s ease 0s;
+            -moz-transition: width 0.3s ease 0s, left 0.3s ease 0s;
+            -o-transition: width 0.3s ease 0s, left 0.3s ease 0s;
+            transition: width 0.3s ease 0s, left 0.3s ease 0s;
+        }
+
+        .cool-card .card-link a:hover:after {
+            width: 100%;
+            left: 0;
+        }
+
+        .cool-card-aqua {
+            background-image: linear-gradient(to bottom right, #00bfad, #99a3d4);
+        }
+
+        .cool-card-aqua .card-content, .cool-card {
+            color: white;
+        }
+
+        .cool-card-pink {
+            background-image: linear-gradient(to bottom right, #ec407b, #ff7d94);
+        }
+
+        .cool-card-pink .card-content {
+            color: white;
+        }
+
+        .cool-card-light {
+            border: 1px solid #eee;
+        }
+
+        .cool-card-light .card-num, .cool-card-light {
+            color: #636363;
+        }
+
+        .cool-card-light .card-link {
+            border-top: 1px solid #eee;
+        }
+
+        .cool-card-light .card-link a:after {
+            background:#636363;
+        }
+
+        .cool-card-dark {
+            background-image: linear-gradient(to bottom right, #252525, #4a4a4a);
+        }
+
+        .cool-card-dark .card-num, .cool-card-dark {
+            color:#eee;
+        }
+
+        .cool-card-dark .card-text {
+            color: #dcdcdcdd;
+        }
+    </style>
+</head>
+{% include "therapy/patient_navbar.html" %}
+<body>
+<br>
+<div class="card" style="margin-left: 20%">
+    <div class="cool-card cool-card-aqua">
+        <div class="card-content">
+            <span class="card-num"><u>THERAPIST NAME</u></span>
+            <h4 class="card-text">
+                {{therapistName}}
+            </h4>
+        </div>
+    </div>
+    <div class="cool-card cool-card-pink">
+        <div class="card-content">
+            <span class="card-num"><u>SYMPTOMS</u></span>
+            <h4 class="card-text">
+                {{symptoms}}
+            </h4>
+        </div>
+    </div>
+    <div class="cool-card cool-card-dark">
+        <div class="card-content">
+            <span class="card-num"><u>THERAPIST NUMBER</u></span>
+            <h4 class="card-text">
+                {{therapistPhoneNumber}}
+            </h4>
+        </div>
+    </div>
+    <div class="cool-card cool-card-aqua">
+        <div class="card-content">
+            <span class="card-num"><u>DEPARTMENT</u></span>
+            <h4 class="card-text">
+                {{therapistDepartment}}
+            </h4>
+        </div>
+    </div>
+    <div class="cool-card cool-card-pink">
+        <div class="card-content">
+            <span class="card-num"><u>REGISTER DATE</u></span>
+            <h4 class="card-text">
+                {{registerDate}}
+            </h4>
+        </div>
+    </div>
+    <div class="cool-card cool-card-dark">
+        <div class="card-content">
+            <span class="card-num"><u>ADDRESS</u></span>
+            <h4 class="card-text">
+                {{address}}
+            </h4>
+        </div>
+    </div>
+    <div class="cool-card cool-card-light">
+        <div class="card-content">
+            <span class="card-num">DISCHARGE RECORDS</span>
+        </div>
+        <div class="card-link">
+            <a href="/patient-discharge"><span>Click Here</span></a>
+        </div>
+    </div>
+</div>
+</body>
+</html>

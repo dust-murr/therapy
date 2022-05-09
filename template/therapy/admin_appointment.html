@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dustin Murry's TMS</title>
+    <link rel="stylesheet" href="{% static '/style.css' %}">
+    <style>
+        .card {
+            margin-bottom: 45px;
+            text-align: center;
+        }
+
+        .card div {
+            margin-top: 30px;
+            display: inline-block;
+        }
+
+        .card > div {
+            margin: 10px 5px;
+            text-align: left;
+        }
+
+        .cool-card {
+            width: 350px;
+            position: relative;
+            -webkit-box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.3);
+            -moz-box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.3);
+            -o-box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.3);
+            box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.3);
+        }
+
+        .cool-card .card-content {
+            padding: 30px;
+        }
+
+        .cool-card .card-num {
+            font-size: 25px;
+        }
+
+        .cool-card .card-link {
+            padding: 25px;
+            width: -webkit-fill-available;
+        }
+
+        .cool-card .card-link a {
+            text-decoration: none;
+            position: relative;
+            padding: 10px 0px;
+        }
+
+        .cool-card .card-link a:after {
+            top: 30px;
+            content: "";
+            display: block;
+            height: 2px;
+            left: 50%;
+            position: absolute;
+            width: 0;
+            -webkit-transition: width 0.3s ease 0s, left 0.3s ease 0s;
+            -moz-transition: width 0.3s ease 0s, left 0.3s ease 0s;
+            -o-transition: width 0.3s ease 0s, left 0.3s ease 0s;
+            transition: width 0.3s ease 0s, left 0.3s ease 0s;
+        }
+
+        .cool-card .card-link a:hover:after {
+            width: 100%;
+            left: 0;
+        }
+
+        .cool-card-aqua {
+            background-image: linear-gradient(to bottom right, #00bfad, #99a3d4);
+        }
+
+        .cool-card-aqua .card-content, .cool-card .card-link a {
+            color: white;
+        }
+
+        .cool-card-aqua .card-link {
+            border-top:1px solid #82c1bb;
+        }
+
+        .cool-card-aqua .card-link a:after {
+            background:white;
+        }
+
+        .cool-card-pink {
+            background-image: linear-gradient(to bottom right, #ec407b, #ff7d94);
+        }
+
+        .cool-card-pink .card-content {
+            color: white;
+        }
+
+        .cool-card-pink .card-link {
+            border-top: 1px solid #ff97ba;
+        }
+
+        .cool-card-pink .card-link a:after {
+            background:white;
+        }
+
+        .cool-card-dark {
+            background-image: linear-gradient(to bottom right, #252525, #4a4a4a);
+        }
+
+        .cool-card-dark .card-num, .cool-card-dark .card-link a {
+            color:#eee;
+        }
+
+        .cool-card-dark .card-link {
+            border-top: 1px solid #636363;
+        }
+
+        .cool-card-dark .card-link a:after {
+            background:#eee;
+        }
+    </style>
+</head>
+{% include "therapy/admin_navbar.html" %}
+<body>
+<div class="card" style="margin-left: 20%">
+    <div class="cool-card cool-card-aqua">
+        <div class="card-content">
+            <span class="card-num">Appointment Records</span>
+        </div>
+        <div class="card-link">
+            <a href="/admin-appointment-record"><span>Click Here</span></a>
+        </div>
+    </div>
+
+    <div class="cool-card cool-card-pink">
+        <div class="card-content">
+            <span class="card-num">Book Appointment</span>
+        </div>
+        <div class="card-link">
+            <a href="/admin-add-appointment"><span>Click Here</span></a>
+        </div>
+    </div>
+
+    <div class="cool-card cool-card-dark">
+        <div class="card-content">
+            <span class="card-num">Approve Appointment</span>
+        </div>
+        <div class="card-link">
+            <a href="/admin-approve-appointment"><span>Click Here</span></a>
+        </div>
+    </div>
+</div>
+</body>
+</html>

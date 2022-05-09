@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Dustin Murry's TMS</title>
+  <link rel="stylesheet" href="{% static '/style.css' %}">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <style>
+   .bill {
+      max-width: 800px;
+      margin: auto;
+      padding: 30px;
+      border: 1px solid #eee;
+      box-shadow: 0 0 10px rgba(0, 0, 0, .15);
+      font-size: 16px;
+      line-height: 24px;
+    }
+
+    .bill table {
+      width: 100%;
+      text-align: left;
+    }
+
+    .bill table td {
+      padding: 5px;
+      vertical-align: top;
+    }
+
+    .bill table tr td:nth-child(2) {
+      text-align: right;
+    }
+
+    .bill table tr.top table td {
+      padding-bottom: 20px;
+    }
+
+    .title {
+      font-size: 45px;
+      font-weight: bold;
+      text-decoration: underline;
+      line-height: 45px;
+    }
+
+    .info {
+      padding-bottom: 40px;
+    }
+
+    .heading {
+      background: lightgreen;
+      font-weight: bold;
+    }
+
+    .details {
+      padding-bottom: 20px;
+    }
+
+    .item {
+      border-bottom: 2px solid green;
+    }
+
+    .total  {
+      border-top: 2px solid green;
+      font-weight: bold;
+    }
+
+    @media only screen and (max-width: 600px) {
+      .bill table tr.top table td {
+        width: 100%;
+        display: block;
+        text-align: center;
+      }
+
+      .bill table tr.info table td {
+        width: 100%;
+        display: block;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+<br>
+<div class="bill" style="margin-left: 25%">
+  <table>
+    <tr class="top">
+      <td colspan="2">
+        <table>
+          <tr>
+            <td class="title">
+              <h1>Patient Bill</h1>
+            </td>
+            <td>
+              <u><b>Register Date:</b></u>
+              <br>{{registerDate}}<br>
+              <u><b>Last Visit Date:</b></u>
+              <br>{{lastVisitDate}}<br>
+              <u><b>Total Visits:</b></u>
+              <br>{{visitNumber}} total visits
+          </tr>
+        </table>
+      </td>
+    </tr>
+    <tr class="info">
+      <td colspan="2">
+        <table>
+          <tr>
+            <td>
+              <u><b>Patient Name:</b></u>
+              <br>{{patientName}}<br>
+              <u><b>Phone Number:</b></u>
+              <br>{{phone_number}}<br>
+              <u><b>Address:</b></u>
+              <br>{{address}}<br>
+            </td>
+            <td>
+              <u><b>Therapist Name:</b></u>
+              <br>{{assignedTherapistName}}<br>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+    <tr class="info">
+      <td colspan="2">
+        <table>
+          <tr>
+            <td>
+              <u><b>Symptoms:</b></u>
+              <br>{{symptoms}}
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+    <tr class="info">
+        <td colspan="2">
+          <table>
+            <tr>
+              <td>
+                <u><b>Charges:</b></u><br><br>
+                &nbsp &nbsp &nbsp &nbsp<b>Copay Total Charge for {{visitNumber}} Visits:</b> ${{copay}}<br>
+                &nbsp &nbsp &nbsp &nbsp<b>Therapist Fee:</b> ${{therapistFee}}<br>
+                &nbsp &nbsp &nbsp &nbsp<b>Treatment Cost:</b> ${{treatmentCost}}<br>
+                &nbsp &nbsp &nbsp &nbsp<b>Other Charge:</b> ${{otherCharge}}<br><br>
+                <u><b>Total Amount:</b></u> ${{total}}
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+  </table>
+</div>
+</body>
+</html>

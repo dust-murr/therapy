@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dustin Murry's TMS</title>
+    <link rel="stylesheet" href="{% static '/style.css' %}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <style>
+        .row {
+            margin-top: 40px;
+            padding: 0 10px;
+        }
+
+        .clickable {
+            cursor: pointer;
+        }
+
+        .panel-heading div {
+            margin-top: -18px;
+            font-size: 15px;
+        }
+
+        .panel-heading div span {
+            margin-left: 5px;
+        }
+
+        .panel-body {
+            display: none;
+        }
+
+        .card {
+            margin-bottom: 45px;
+            text-align: center;
+        }
+
+        .card div {
+            display: inline-block;
+        }
+
+        .card > div {
+            margin: 10px 5px;
+            text-align: left;
+        }
+
+       .cool-card {
+            width: 300px;
+            position: relative;
+            -webkit-box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.3);
+            -moz-box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.3);
+            -o-box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.3);
+            box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.3);
+        }
+
+        .cool-card .card-content {
+            padding: 30px;
+        }
+
+        .cool-card .card-num {
+            font-size: 25px;
+        }
+
+        .cool-card .card-text {
+            line-height: 1.6;
+        }
+
+        .cool-card .card-link {
+            padding: 25px;
+            width: -webkit-fill-available;
+        }
+
+        .cool-card .card-link a {
+            text-decoration: none;
+            position: relative;
+            padding: 10px 0px;
+        }
+
+        .cool-card .card-link a:after {
+            top: 30px;
+            content: "";
+            display: block;
+            height: 2px;
+            left: 50%;
+            position: absolute;
+            width: 0;
+            -webkit-transition: width 0.3s ease 0s, left 0.3s ease 0s;
+            -moz-transition: width 0.3s ease 0s, left 0.3s ease 0s;
+            -o-transition: width 0.3s ease 0s, left 0.3s ease 0s;
+            transition: width 0.3s ease 0s, left 0.3s ease 0s;
+        }
+
+        .cool-card .card-link a:hover:after {
+            width: 100%;
+            left: 0;
+        }
+
+        .cool-card-aqua {
+            background-image: linear-gradient(to bottom right, #00bfad, #99a3d4);
+        }
+
+        .cool-card-aqua .card-content, .cool-card .card-link a {
+            color: white;
+        }
+
+        .cool-card-aqua .card-link {
+            border-top:1px solid #82c1bb;
+        }
+
+        .cool-card-aqua .card-link a:after {
+            background:white;
+        }
+
+        .cool-card-pink {
+            background-image: linear-gradient(to bottom right, #ec407b, #ff7d94);
+        }
+
+        .cool-card-pink .card-content {
+            color: white;
+        }
+
+        .cool-card-pink .card-link {
+            border-top: 1px solid #ff97ba;
+        }
+
+        .cool-card-pink .card-link a:after {
+            background:white;
+        }
+
+        .cool-card-dark {
+            background-image: linear-gradient(to bottom right, #252525, #4a4a4a);
+        }
+
+        .cool-card-dark .card-num, .cool-card-dark .card-link a {
+            color:#eee;
+        }
+
+        .cool-card-dark .card-text {
+            color: #dcdcdcdd;
+        }
+
+        .cool-card-dark .card-link {
+            border-top: 1px solid #636363;
+        }
+
+        .cool-card-dark .card-link a:after {
+            background:#eee;
+        }
+    </style>
+</head>
+{% include "therapy/admin_navbar.html" %}
+<body>
+<br>
+<div class="card" style="margin-left: 20%">
+    <div class="cool-card cool-card-aqua">
+        <div class="card-content">
+            <span class="card-num">{{therapist_count}}</span>
+            <h4 class="card-text">
+                TOTAL THERAPISTS
+            </h4>
+            <p class="card-text">
+                Needs Approval : {{pending_therapist}}
+            </p>
+        </div>
+        <div class="card-link">
+            <a href="/admin-approve-therapist"><span>Pending Therapists</span></a>
+        </div>
+    </div>
+    <div class="cool-card cool-card-pink">
+        <div class="card-content">
+            <span class="card-num">{{patient_count}}</span>
+            <h4 class="card-text">
+                TOTAL PATIENTS
+            </h4>
+            <p class="card-text">
+                Needs Approval : {{pending_patient}}
+            </p>
+        </div>
+        <div class="card-link">
+            <a href="/admin-approve-patient"><span>Pending Patients</span></a>
+        </div>
+    </div>
+    <div class="cool-card cool-card-dark">
+        <div class="card-content">
+            <span class="card-num">{{appointment_count}}</span>
+            <h4 class="card-text">
+                TOTAL APPOINTMENTS
+            </h4>
+            <p class="card-text">
+                Needs Approval : {{pending_appointment}}
+            </p>
+        </div>
+        <div class="card-link">
+            <a href="/admin-approve-appointment"><span>Pending Appointments</span></a>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-8" style="margin-left: 25%">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Therapists</h3>
+                    <div class="pull-right">
+                        <span class="clickable filter" data-toggle="tooltip" title="Toggle table filter" data-container="body">
+                            <i class="glyphicon glyphicon-filter"></i>
+                        </span>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <input type="text" class="form-control" id="t-table-filter" data-action="filter" data-filters="#t-table" placeholder="Filter Therapists" />
+                </div>
+                <table class="table table-hover" id="t-table">
+                    <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Department</th>
+                        <th>Phone Number</th>
+                        <th>Status</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for t in therapists %}
+                    <tr>
+                        <td>
+                            {{t.get_name}}
+                        </td>
+                        <td>
+                            {{t.department}}
+                        </td>
+                        <td>
+                            {{t.phone_number}}
+                        </td>
+                        {%if t.status%}
+                        <td>
+                            <span class="label label-success">Approved</span>
+                        </td>
+                        {% else %}
+                        <td>
+                            <span class="label label-warning">Pending</span>
+                        </td>
+                        {% endif %}
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col-md-8" style="margin-left: 25%">
+            <div class="panel panel-success">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Patients</h3>
+                    <div class="pull-right">
+                        <span class="clickable filter" data-toggle="tooltip" title="Toggle table filter" data-container="body">
+                            <i class="glyphicon glyphicon-filter"></i>
+                        </span>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <input type="text" class="form-control" data-action="filter" data-filters="#p-table" placeholder="Filter Patients" />
+                </div>
+                <table class="table table-hover" id="p-table">
+                    <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Symptoms</th>
+                        <th>Phone Number</th>
+                        <th>Address</th>
+                        <th>Register Date</th>
+                        <th>Status</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for p in patients %}
+                    <tr>
+                        <td>
+                            {{p.get_name}}
+                        </td>
+                        <td>
+                            {{p.symptoms}}
+                        </td>
+                        <td>
+                            {{p.phone_number}}
+                        </td>
+                        <td>
+                            {{p.address}}
+                        </td>
+                        <td>
+                            {{p.registerDate}}
+                        </td>
+                        {%if p.status%}
+                        <td>
+                            <span class="label label-success">Approved</span>
+                        </td>
+                        {% else %}
+                        <td>
+                            <span class="label label-warning">Pending</span>
+                        </td>
+                        {% endif %}
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col-md-8" style="margin-left: 25%">
+            <div class="panel panel-warning">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Appointments</h3>
+                    <div class="pull-right">
+                        <span class="clickable filter" data-toggle="tooltip" title="Toggle table filter" data-container="body">
+                            <i class="glyphicon glyphicon-filter"></i>
+                        </span>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <input type="text" class="form-control" id="a-table-filter" data-action="filter" data-filters="#a-table" placeholder="Filter Appointments" />
+                </div>
+                <table class="table table-hover" id="a-table">
+                    <thead>
+                    <tr>
+                        <th>Therapist Name</th>
+                        <th>Patient Name</th>
+                        <th>Appointment Date</th>
+                        <th>Status</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for a in appointments %}
+                    <tr>
+                        <td>
+                            {{a.therapistName}}
+                        </td>
+                        <td>
+                            {{a.patientName}}
+                        </td>
+                        <td>
+                            {{a.appointmentDate}}
+                        </td>
+                        {%if a.status%}
+                        <td>
+                            <span class="label label-success">Approved</span>
+                        </td>
+                        {% else %}
+                        <td>
+                            <span class="label label-warning">Pending</span>
+                        </td>
+                        {% endif %}
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+    (function(){
+        'use strict';
+        var $ = jQuery;
+        $.fn.extend({
+            filterTable: function(){
+                return this.each(function(){
+                    $(this).on('keyup', function(e){
+                        $('.filterTable_no_results').remove();
+                        var $this = $(this),
+                            search = $this.val().toLowerCase(),
+                            target = $this.attr('data-filters'),
+                            $target = $(target),
+                            $rows = $target.find('tbody tr');
+
+                        if(search == '') {
+                            $rows.show();
+                        } else {
+                            $rows.each(function(){
+                                var $this = $(this);
+                                $this.text().toLowerCase().indexOf(search) === -1 ? $this.hide() : $this.show();
+                            })
+                            if($target.find('tbody tr:visible').size() === 0) {
+                                var col_count = $target.find('tr').first().find('td').size();
+                                var no_results = $('<tr class="filterTable_no_results"><td colspan="'+col_count+'">No results found</td></tr>')
+                                $target.find('tbody').append(no_results);
+                            }
+                        }
+                    });
+                });
+            }
+        });
+        $('[data-action="filter"]').filterTable();
+    })(jQuery);
+
+    $(function(){
+        // attach table filter plugin to inputs
+        $('[data-action="filter"]').filterTable();
+
+        $('.container').on('click', '.panel-heading span.filter', function(e){
+            var $this = $(this),
+                $panel = $this.parents('.panel');
+
+            $panel.find('.panel-body').slideToggle();
+            if($this.css('display') != 'none') {
+                $panel.find('.panel-body input').focus();
+            }
+        });
+        $('[data-toggle="tooltip"]').tooltip();
+    })
+</script>
+</body>
+</html>

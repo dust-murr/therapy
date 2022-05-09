@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Dustin Murry's TMS</title>
+  <link rel="stylesheet" href="{% static '/style.css' %}">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <style>
+    .row {
+        padding: 0 10px;
+    }
+
+    .clickable {
+        cursor: pointer;
+    }
+
+    .panel-heading div {
+        margin-top: -18px;
+        font-size: 15px;
+    }
+
+    .panel-heading div span {
+        margin-left:5px;
+    }
+
+    .panel-body {
+        display: none;
+    }
+  </style>
+</head>
+<body>
+{% include "therapy/therapist_navbar.html" %}
+<br><br>
+<div class="container">
+  <div class="row">
+    <div class="col-md-8" style="margin-left: 25%">
+      <div class="panel panel-success">
+        <div class="panel-heading">
+          <h3 class="panel-title">Patient Records</h3>
+          <div class="pull-right">
+            <span class="clickable filter" data-toggle="tooltip" title="Toggle table filter" data-container="body">
+              <i class="glyphicon glyphicon-filter"></i>
+            </span>
+          </div>
+        </div>
+        <div class="panel-body">
+          <input type="text" class="form-control" id="p-table-filter" data-action="filter" data-filters="#p-table" placeholder="Filter Records" />
+        </div>
+        <table class="table table-hover" id="p-table">
+          <thead>
+          <tr>
+            <th>Name</th>
+            <th>Address</th>
+            <th>Phone Number</th>
+            <th>Symptoms</th>
+            <th>Appointment Date</th>
+          </tr>
+          </thead>
+          <tbody>
+          {% for a,p in appointments %}
+          <tr>
+            <td>
+              {{p.get_name}}
+            </td>
+            <td>
+              {{p.address}}
+            </td>
+            <td>
+              {{p.phone_number}}
+            </td>
+            <td>
+              {{p.symptoms}}
+            </td>
+            <td>
+              {{a.appointmentDate}}
+            </td>
+          </tr>
+          {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+    (function(){
+        'use strict';
+        var $ = jQuery;
+        $.fn.extend({
+            filterTable: function(){
+                return this.each(function(){
+                    $(this).on('keyup', function(e){
+                        $('.filterTable_no_results').remove();
+                        var $this = $(this),
+                            search = $this.val().toLowerCase(),
+                            target = $this.attr('data-filters'),
+                            $target = $(target),
+                            $rows = $target.find('tbody tr');
+
+                        if(search == '') {
+                            $rows.show();
+                        } else {
+                            $rows.each(function(){
+                                var $this = $(this);
+                                $this.text().toLowerCase().indexOf(search) === -1 ? $this.hide() : $this.show();
+                            })
+                            if($target.find('tbody tr:visible').size() === 0) {
+                                var col_count = $target.find('tr').first().find('td').size();
+                                var no_results = $('<tr class="filterTable_no_results"><td colspan="'+col_count+'">No results found</td></tr>')
+                                $target.find('tbody').append(no_results);
+                            }
+                        }
+                    });
+                });
+            }
+        });
+        $('[data-action="filter"]').filterTable();
+    })(jQuery);
+
+    $(function(){
+        // attach table filter plugin to inputs
+        $('[data-action="filter"]').filterTable();
+
+        $('.container').on('click', '.panel-heading span.filter', function(e){
+            var $this = $(this),
+                $panel = $this.parents('.panel');
+
+            $panel.find('.panel-body').slideToggle();
+            if($this.css('display') != 'none') {
+                $panel.find('.panel-body input').focus();
+            }
+        });
+        $('[data-toggle="tooltip"]').tooltip();
+    })
+</script>
+</body>

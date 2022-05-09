@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en-US" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <title>Dustin Murry's TMS</title>
+  <link rel="stylesheet" href="{% static '/style.css' %}">
+  <style>
+    .about {
+      margin-left: 20%;
+      padding: 10px;
+    }
+
+    .upper,
+    .lower {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-evenly;
+      margin-bottom: 1rem;
+    }
+
+    img {
+      background-size: cover;
+      width: 36rem;
+      height: 28rem;
+      display: flex;
+      align-items: center;
+      border-radius: 25%;
+    }
+
+    .info {
+      width: 40%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      text-align: center;
+      padding: 0rem 2rem;
+      border-radius: 10px;
+      box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    }
+    .info:hover{
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+{% include "therapy/navbar.html" %}
+<body>
+  <div class="about">
+    <div class="upper">
+      <div>
+       <img src="https://media.giphy.com/media/3orif0kumQYo7rdvcQ/giphy.gif"/>
+      </div>
+      <div class="info">
+        <h1 style="color: forestgreen">ABOUT US</h1>
+        <p>
+          <b><u>THERAPY MANAGEMENT SYSTEM</u></b><br>
+          <b>Creator:</b> Dustin Murry <br>
+          <b>Mission Statement:</b> To give all <u>therapists</u> and <u>patients</u> a tool to improve quality of care<br>
+          <b>Core Values:</b> Therapist/Patient Focus, Quality of Care, Passion, Sustainability
+        </p>
+      </div>
+    </div>
+
+    <div class="lower">
+      <div class="info">
+        <h1 style="color: maroon">ABOUT SYSTEM</h1>
+        <p>
+      <b>--</b> Maintains medical records of patient <b>--</b><br>
+      <b>--</b> Maintains contact details of patient <b>--</b><br>
+      <b>--</b> Keeps track of appointment dates <b>--</b><br>
+      <b>--</b> Saves therapist and patient information <b>--</b><br>
+      <b>--</b> Tracks billing statements and payments <b>--</b>
+        </p>
+      </div>
+      <div>
+        <img src="https://media.giphy.com/media/xT5LMtk3DMRTbaM6J2/giphy.gif"/>
+      </div>
+    </div>
+  </div>
+</body>

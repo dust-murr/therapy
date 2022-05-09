@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+{% load static %}
+<head>
+    <link rel="stylesheet" href="{% static '/style.css' %}">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <title>Dustin Murry's TMS</title>
+</head>
+<body>
+<section class="screen">
+    <header>
+      <h2 class="logo"><a href="/adminlogin">Therapy Management System</a></h2>
+      <div class="toggle"></div>
+    </header>
+    <video src="././static/videos/therapist.mp4" muted loop autoplay></video>
+    <div class="overlay"></div>
+    <div class="text">
+      <h2 class="animate__animated animate__backInLeft">Therapists </h2>
+      <h3 class="animate__animated animate__backInLeft">Are Here To Help</h3>
+      <p class="animate__animated animate__backInLeft animate__delay-1s">Just Click Below To Make Your Appointment</p>
+      <a href="/patientlogin">Click Here</a>
+    </div>
+  </section>
+<div class="menu">
+    <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/about">About</a></li>
+        <li><a href="/adminlogin">Admin</a></li>
+        <li><a href="/therapistlogin">Therapist</a></li>
+        <li><a href="/patientlogin">Patient</a></li>
+        <li><a href="/contact">Contact</a></li>
+    </ul>
+</div>
+</body>
+
+<script>
+const menuToggle = document.querySelector('.toggle');
+      const screen = document.querySelector('.screen');
+
+      menuToggle.addEventListener('click', () => {
+        menuToggle.classList.toggle('active');
+        screen.classList.toggle('active');
+      });
+</script>

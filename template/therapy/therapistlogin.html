@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+{% load widget_tweaks %}
+{% load static %}
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Dustin Murry's TMS</title>
+  <link rel="stylesheet" href="{% static '/style.css' %}">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <style>
+    btn {
+        border-radius: 0
+    }
+
+    .btn:focus, .btn:active, .btn.active, .btn:active:focus {
+        outline: 0;
+        border-radius: 0
+    }
+
+    .btn-larger {
+        padding: 15px 40px !important;
+        border:2px solid #F7CA18 !important;;
+        border-radius: 0px !important;;
+        text-transform: uppercase;
+        font-family: 'Dosis', sans-serif;
+        font-size: 18px;
+        font-weight: 300;
+        color: #F7CA18;
+        background-color: transparent;
+        -webkit-transition: all .6s;
+        -moz-transition: all .6s;
+        transition: all .6s;
+    }
+    .btn-larger:hover, .btn-larger:focus {
+        border-color: #F7CA18;
+        color: white;
+        background-color: #F7CA18;
+        border-radius: 0
+    }
+
+    div#form {
+        margin-left: 10%;
+        color: white;
+        background-attachment: scroll;
+        background-position: center center;
+        background-repeat: none;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        background-size: cover;
+        -o-background-size: cover;
+        min-height:100%;
+
+    }
+
+    #myform p {
+        font-size: 14px;
+        margin-bottom: 5px;
+    }
+    #myform {
+        background: rgba(0,0,0,0.8);
+        margin: 20px 0 20px 0
+    }
+     @media (min-width: 768px) {
+      #myform {
+        background: rgba(0,0,0,0.8);
+        margin: 50px 0 20px 0
+      }
+    }
+
+    #myform .tab-pane h2 {
+        margin: 10px 0;
+        color: white;
+    }
+    #myform .tab-pane p{
+        margin-top: 20px;
+    }
+    #myform .tc {
+        padding: 20px
+    }
+    #myform .form-group {
+        margin-bottom: 0px;
+        color: white;
+    }
+    #myform .form-group input, #myform .form-group textarea {
+        padding: 10px;
+    }
+    #myform .form-group input.form-control {
+        height: auto;
+        background-color: rgba(237, 235, 250, 0.1);
+        color: white;
+    }
+
+    .mt {
+        margin-top: 30px
+    }
+  </style>
+</head>
+
+<body>
+{% include "therapy/navbar.html" %}
+<form method="post">
+  {% csrf_token %}
+  <div id="form">
+    <div class="container">
+      <div class="col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3 col-md-8 col-md-offset-2">
+        <div id="myform">
+          <div class="tc">
+            <h2 class="text-uppercase text-center"> Therapist Log in</h2>
+            <form id="login">
+              <label style="color: white"><b>Username</b></label>
+              <div class="form-group">
+                {% render_field form.username class="form-control" placeholder="Username" %}
+              </div><br>
+              <label style="color: white"><b>Password</b></label>
+              <div class="form-group">
+                {% render_field form.password class="form-control" placeholder="Password" %}
+              </div>
+              <div class="mt">
+                <button type="submit" class="btn btn-larger btn-block"/>
+                Log in
+                </button>
+              </div>
+            </form><br>
+            <form action="/therapistregister">
+              <button class="btn btn-larger btn-block">
+                No Account. <br>Register Here.
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+</body>
+

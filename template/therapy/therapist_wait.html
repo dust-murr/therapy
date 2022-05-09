@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dustin Murry's TMS</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <style>
+      body {
+        background-color: lightgrey;
+      }
+    </style>
+</head>
+<body>
+<div style="text-align: center">
+    <h1 class="display-4">Hello {{request.user.first_name}} {{request.user.last_name}}</h1><br>
+    <p class="lead">Currently your account is awaiting approval by our team
+        <br><br>Please give us up to <u>24 hours</u> to validate your profile<br><br>
+        <a class="btn btn-primary btn-lg" href="/logged-out" role="button">Homepage</a>
+    </p>
+</div>
+</body>
+</html>

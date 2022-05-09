@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+{% load static %}
+{% load widget_tweaks %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dustin Murry's TMS</title>
+    <link rel="stylesheet" href="{% static '/style.css' %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <style>
+        btn {
+            border-radius: 0
+        }
+
+        .btn:focus, .btn:active, .btn.active, .btn:active:focus {
+            outline: 0;
+            border-radius: 0
+        }
+
+        .btn-larger {
+            padding: 15px 40px !important;
+            border:2px solid #F7CA18 !important;;
+            border-radius: 0px !important;;
+            text-transform: uppercase;
+            font-family: 'Dosis', sans-serif;
+            font-size: 18px;
+            font-weight: 300;
+            color: #F7CA18;
+            background-color: transparent;
+            -webkit-transition: all .6s;
+            -moz-transition: all .6s;
+            transition: all .6s;
+        }
+        .btn-larger:hover, .btn-larger:focus {
+            border-color: #F7CA18;
+            color: white;
+            background-color: #F7CA18;
+            border-radius: 0
+        }
+
+        div#form {
+            margin-left: 10%;
+            color: white;
+            background-attachment: scroll;
+            background-position: center;
+            background-repeat: none;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            background-size: cover;
+            -o-background-size: cover;
+            min-height:100%;
+        }
+
+        #myform p {
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+        #myform {
+            background: rgba(0,0,0,0.8);
+            margin: 20px 0 20px 0
+        }
+         @media (min-width: 768px) {
+          #myform {
+            background: rgba(0,0,0,0.8);
+            margin: 50px 0 20px 0
+          }
+        }
+
+        #myform .tab-pane h2 {
+            margin: 10px 0;
+            color: white;
+        }
+        #myform .tab-pane p{
+            margin-top: 20px;
+        }
+        #myform .tc {
+            padding: 20px
+        }
+        #myform .form-group {
+            margin-bottom: 0px;
+            color: white;
+        }
+        #myform .form-group input, #myform .form-group textarea {
+            padding: 10px;
+        }
+        #myform .form-group input.form-control {
+            height: auto;
+            background-color: rgba(237, 235, 250, 0.1);
+            color: white;
+        }
+
+        .mt {
+            margin-top: 30px
+        }
+    </style>
+</head>
+{% include "therapy/admin_navbar.html" %}
+<body>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div id="form">
+      <div class="container">
+        <div class="col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3 col-md-8 col-md-offset-2">
+          <div id="myform">
+            <div class="tc">
+                <h2 class="text-uppercase text-center"> Update Appointment</h2><br>
+                <form id="register">
+                    <label style="color: white"><b>Patient Name</b></label>
+                    <div>
+                        <p style="font-size: 16px; color: gold">{{appointment.patientName}}</p>
+                    </div><br>
+                    <div>
+                    <label style="color: white"><b><span style="color: orange; font-family: Copperplate Gothic; font-size: 16px">
+                        Original</span> Therapist Name</b></label><br>
+                        <p style="font-size: 16px; color: gold">{{appointment.therapistName}}</p>
+                    </div><br>
+                    <div>
+                    <label style="color: white"><b><span style="color: orange; font-family: Copperplate Gothic; font-size: 16px">
+                        Original</span> Appointment Date</b></label><br>
+                        <p style="font-size: 16px; color: gold">{{appointment.appointmentDate}}</p>
+                    </div><br>
+                    <label style="color: white"><b><span style="color: orange; font-family: Copperplate Gothic; font-size: 16px">
+                        New</span> Therapist Name</b></label>
+                    <div>
+                        {% render_field appointmentForm.therapist_id class="form-control" %}
+                    </div><br>
+                    <label style="color: white"><b><span style="color: orange; font-family: Copperplate Gothic; font-size: 16px">
+                        New</span> Appointment Date</b></label>
+                    <div>
+                        {% render_field appointmentForm.appointmentDate class="form-control" %}
+                    </div>
+                    <div class="mt">
+                        <button type="submit" class="btn btn-larger btn-block">
+                            Update
+                        </button>
+                    </div>
+                </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</form>
+<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+</body>

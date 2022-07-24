@@ -80,12 +80,8 @@ WSGI_APPLICATION = 'therapymanagement.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE'  : 'django.db.backends.mysql',
-        'NAME'    : 'therapy_management_system',
-        'USER'    : 'root',
-        'PASSWORD': '12345',
-        'HOST'    : 'localhost',
-        'PORT'    : '3306',
+        'ENGINE'  : 'django.db.backends.sqlite3',
+        'NAME'    : 'therapymanagement/db.sqlite3',
     }
 }
 

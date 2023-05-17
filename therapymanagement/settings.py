@@ -31,7 +31,7 @@ SECRET_KEY = 'django-insecure-5^57-bn2a7vu2=d*=(7ujx(f(%zwb_^w7&amc&42h+l%u*rhb$
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['therapymanagement.herokuapp.com']
+ALLOWED_HOSTS = ['.vercel.app']
 
 
 # Application definition

@@ -15,6 +15,10 @@ import os
 import django_heroku
 import dj_database_url
 from decouple import config
+import pymysql
+
+pymysql.version_info = (1, 4, 3, "final", 0)
+pymysql.install_as_MySQLdb()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -29,7 +33,7 @@ STATIC_DIR = os.path.join(BASE_DIR, 'static')
 SECRET_KEY = 'django-insecure-5^57-bn2a7vu2=d*=(7ujx(f(%zwb_^w7&amc&42h+l%u*rhb$'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['.vercel.app']
 
@@ -82,12 +86,14 @@ WSGI_APPLICATION = 'therapymanagement.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
+
 DATABASES = {
     'default': {
         'ENGINE'  : 'django.db.backends.sqlite3',
         'NAME'    : 'therapymanagement/db.sqlite3',
     }
 }
+
 
 
 # Password validation
@@ -127,6 +133,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = BASE_DIR / 'staticfiles_build' / 'static'
 
 STATICFILES_DIRS = [STATIC_DIR, ]
 

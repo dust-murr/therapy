@@ -11,6 +11,11 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
+import pymysql
+
+pymysql.version_info = (1, 4, 3, "final", 0)
+pymysql.install_as_MySQLdb()
+
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'therapymanagement.settings')
 
 application = get_wsgi_application()

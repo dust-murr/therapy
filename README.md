@@ -7,3 +7,4 @@ Therapy Management System
 ![Therapist Dashboard](https://github.com/dust-murr/therapy/assets/46274950/71d84fc7-de4f-422f-9114-f646f825145b)
 ![Patient Dashboard](https://github.com/dust-murr/therapy/assets/46274950/f6e94521-fc1b-4db0-baab-5807c2ea8b9c)
 ![Patient Discharge Bill](https://github.com/dust-murr/therapy/assets/46274950/28d862ff-fa4d-43af-ad0e-80a6e3282f81)
+![MySQL Database ER Diagram](https://github.com/dust-murr/therapy/assets/46274950/9031e9f6-2b99-45a3-ad10-5ff865372680)

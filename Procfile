@@ -1,1 +1,1 @@
-web: gunicorn therapymanagement.wsgi --log-file -
+web: gunicorn therapymanagement.wsgi:application
